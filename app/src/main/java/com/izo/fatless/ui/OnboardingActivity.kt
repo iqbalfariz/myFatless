@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
+import androidx.activity.OnBackPressedCallback
 import com.izo.fatless.MainActivity
 import com.izo.fatless.R
 import com.izo.fatless.databinding.ActivityOnboardingBinding
@@ -20,12 +21,13 @@ class OnboardingActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val onboardingIllustration = binding.ivOnboardingIllustration
-        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_repeat)
+        val imageAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_repeat)
 
-        onboardingIllustration.startAnimation(slideAnimation)
+        onboardingIllustration.startAnimation(imageAnimation)
 
         binding.btnPredict.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, GenderActivity::class.java))
+            overridePendingTransition(androidx.appcompat.R.anim.abc_popup_enter, androidx.appcompat.R.anim.abc_popup_exit)
         }
     }
 }

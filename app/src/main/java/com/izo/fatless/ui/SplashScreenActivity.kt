@@ -26,6 +26,7 @@ class SplashScreenActivity : AppCompatActivity() {
         Handler().postDelayed({
             startActivity(Intent(this, OnboardingActivity::class.java))
             finish()
+            overridePendingTransition(androidx.appcompat.R.anim.abc_fade_in, androidx.appcompat.R.anim.abc_fade_out)
         }, 3000)
     }
 }
