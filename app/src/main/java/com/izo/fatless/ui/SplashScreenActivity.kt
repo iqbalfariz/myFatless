@@ -17,15 +17,14 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar?.hide()
 
-        val logoAnimation = binding.imageView
+        val logoAnimation = binding.ivLogo
         val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.slide)
         logoAnimation.startAnimation(slideAnimation)
 
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, OnboardingActivity::class.java))
             finish()
         }, 3000)
     }

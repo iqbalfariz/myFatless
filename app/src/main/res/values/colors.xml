@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pine_tree_dark">#233328</color>
+    <color name="pine_tree_light">#27342A</color>
+    <color name="baby_powder">#F8FBF6</color>
+    <color name="russian_green">#74906E</color>
+    <color name="xanadu">#6B7D64</color>
 </resources>
