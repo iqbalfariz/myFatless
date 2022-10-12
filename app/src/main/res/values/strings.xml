@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Fatless</string>
+    <string name="hasil_test_predict">Hasil Test Predict</string>
+
+    <!--UI-->
+    <!--Splash Screen Page-->
+
+    <!--OnBoarding Page-->
+    <string name="introduction_app">Fatless adalah sebuah aplikasi yang dirancang untuk membantu
+pengguna dalam memprediksi presentase kadar lemak dalam tubuh.</string>
+    <string name="prediction_start">Prediksikan</string>
+
+    <!--Gender Page-->
+    <string name="gender_question">Apakah jenis kelamin-mu?</string>
+</resources>
