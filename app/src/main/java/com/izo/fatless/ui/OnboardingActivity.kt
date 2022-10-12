@@ -12,7 +12,7 @@ import com.izo.fatless.databinding.ActivitySplashScreenBinding
 
 class OnboardingActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityOnboardingBinding
+    private lateinit var binding: ActivityOnboardingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
