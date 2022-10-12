@@ -1,7 +1,6 @@
 package com.izo.fatless.data.api
 
 import com.izo.fatless.data.request.RequestPredict
-import com.izo.fatless.data.request.RequestPredictItem
 
 import com.izo.fatless.data.response.PredictResponse
 import retrofit2.Call
@@ -12,7 +11,6 @@ interface ApiService {
 
     @POST("predict")
     fun getPredict(
-        @Body requestPredict: List<RequestPredictItem>
+        @Body requestPredict: RequestPredict
     ): Call<PredictResponse>
-
 }

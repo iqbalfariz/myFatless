@@ -11,7 +11,7 @@ class ApiConfig {
     fun getRetrofitClientInstance(): Retrofit {
         val gson = GsonBuilder().setLenient().create()
         return Retrofit.Builder()
-            .baseUrl("https://fatless-api.herokuapp.com/    ")
+            .baseUrl("https://fatless-api.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }

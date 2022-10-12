@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.izo.fatless.data.api.ApiConfig
 import com.izo.fatless.data.api.ApiService
 import com.izo.fatless.data.request.RequestPredict
-import com.izo.fatless.data.request.RequestPredictItem
 import com.izo.fatless.data.response.PredictResponse
 import com.izo.fatless.databinding.ActivityMainBinding
 import retrofit2.Call
@@ -28,8 +27,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPredict() {
-        val requestPredict = RequestPredictItem()
-        val requestPredictBase = RequestPredict()
+
+        val requestPredictItem = RequestPredict.RequestPredictItem(0.0,0,0.0,
+            0.0,0.0,0.0,0.0,0.0,0.0)
 
 //        val age = binding.edAge.text.toString()
 //        val weight = binding.edWeight.text.toString()
@@ -40,51 +40,42 @@ class MainActivity : AppCompatActivity() {
 //        val thigh = binding.edThigh.text.toString()
 //        val biceps = binding.edBiceps.text.toString()
 
+        val density = 93.1 //Chest
+        val age = 23 //Age
+        val weight = 32.0 //Biceps
+        val height = 85.2 //Abdomen
+        val chest = 67.75 //Height
+        val abdomen = 1.0708 //Density
+        val hip = 94.5 //Hip
+        val thigh = 59.0 //Thight
+        val biceps = 154.25 //Weight
 
-        val age = 25
-        val weight = 154.25
-        val height = 67.75
-        val chest = 93.1
-        val abdomen = 85.2
-        val hip = 94.5
-        val thigh = 59
-        val biceps = 32
+        requestPredictItem.Density = density.toDouble()
+        requestPredictItem.Age = age.toInt()
+        requestPredictItem.Height = height.toDouble()
+        requestPredictItem.Weight = weight.toDouble()
+        requestPredictItem.Chest = chest.toDouble()
+        requestPredictItem.Abdomen = abdomen.toDouble()
+        requestPredictItem.Hip = hip.toDouble()
+        requestPredictItem.Thigh = thigh.toDouble()
+        requestPredictItem.Biceps = biceps.toDouble()
 
-        requestPredict.density = 1.0708.toDouble()
-        requestPredict.age = age.toInt()
-        requestPredict.weight = height.toDouble()
-        requestPredict.height = weight.toDouble()
-        requestPredict.chest = chest.toDouble()
-        requestPredict.abdomen = abdomen.toDouble()
-        requestPredict.hip = hip.toDouble()
-        requestPredict.thigh = thigh.toInt()
-        requestPredict.biceps = biceps.toInt()
+        Log.e("Test", requestPredictItem.toString())
+        val requestPredict = RequestPredict()
+        requestPredict.add(requestPredictItem)
 
-        var prediction = requestPredictBase.requestPredict
-        prediction = listOf(requestPredict)
-
-        println(requestPredict.density)
-        println(requestPredict.age)
-        println(requestPredict.weight)
-        println(requestPredict.height)
-        println(requestPredict.chest)
-        println(requestPredict.abdomen)
-        println(requestPredict.hip)
-        println(requestPredict.thigh)
-        println(requestPredict.biceps)
-
-        println(prediction)
 
         val retrofit = ApiConfig().getRetrofitClientInstance().create(ApiService::class.java)
-        retrofit.getPredict(prediction).enqueue(object : retrofit2.Callback<PredictResponse>{
+        retrofit.getPredict(requestPredict).enqueue(object : retrofit2.Callback<PredictResponse>{
             override fun onResponse(
                 call: Call<PredictResponse>,
                 response: Response<PredictResponse>
             ) {
                 val responseBody = response.body()
-                Log.e("Berhasil", "{${response.body().toString()}}")
+                val prediction = responseBody?.prediction
+                Log.e("Berhasil", "{${prediction.toString()}}")
                 if (responseBody != null) {
-                    binding.tvResultPredict.text = responseBody?.prediction.toString()
+                    binding.tvResultPredict.text = prediction.toString()
                 }
             }
 
@@ -95,6 +86,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
+        lateinit var requestPredict: RequestPredict
+        lateinit var requestPredictItem: RequestPredict.RequestPredictItem
         const val TAG = "MainActivity"
     }
 }
